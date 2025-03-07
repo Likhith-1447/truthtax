@@ -76,53 +76,66 @@ function App() {
       <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Home</a>
       
       {/* Products Dropdown */}
-      <div 
-        className="relative"
-        onMouseLeave={() => setDropdownOpen(false)}
-      >
-        <button 
-          onMouseEnter={() => setDropdownOpen(true)}
-          className="text-gray-700 hover:text-blue-600 font-medium flex items-center"
-        >
-          Products <ChevronDown className="ml-1" />
-        </button>
-        
-     
-        {dropdownOpen && (
-          <div 
-            className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md z-10"
-            onMouseEnter={() => setDropdownOpen(true)}
-          >
-            <div className="py-4">
-              {/* Individual Products */}
-              <h3 className="font-bold text-blue-900 px-6 mb-2">INDIVIDUAL PRODUCTS</h3>
-              <ul className="mb-4">
-                {['GST', 'Accounts Payable', 'Vendor Management', 'MaxITC', 'E-Invoicing & E-Way Bill', 'TDS'].map((item) => (
-                  <li 
-                    key={item} 
-                    className="px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
+      {/* Products Dropdown */}
+<div 
+  className="relative"
+  onMouseLeave={() => setDropdownOpen(false)}
+>
+  <button 
+    onMouseEnter={() => setDropdownOpen(true)}
+    className="text-gray-700 hover:text-blue-600 font-medium flex items-center"
+  >
+    Products <ChevronDown className="ml-1" />
+  </button>
 
-              {/* Product Suites */}
-              <h3 className="font-bold text-blue-900 px-6 mb-2 mt-4">PRODUCT SUITES</h3>
-              <ul>
-                {['Clear Finance Cloud', 'Clear Compliance Cloud', 'Clear Supply Chain Cloud'].map((item) => (
-                  <li 
-                    key={item} 
-                    className="px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        )}
+  {dropdownOpen && (
+    <div 
+      className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md z-10"
+      onMouseEnter={() => setDropdownOpen(true)}
+    >
+      <div className="py-4">
+        {/* Individual Products */}
+        <h3 className="font-bold text-blue-900 px-6 mb-2">INDIVIDUAL PRODUCTS</h3>
+        <ul className="mb-4">
+          {[
+            { name: 'GST', link: '/gst' },
+            { name: 'Accounts Payable', link: '/accounts-payable' },
+            { name: 'Vendor Management', link: '/vendor-management' },
+            { name: 'MaxITC', link: '/maxitc' },
+            { name: 'E-Invoicing & E-Way Bill', link: '/e-invoicing-eway-bill' },
+            { name: 'TDS', link: '/tds' },
+          ].map((item) => (
+            <a 
+              key={item.name} 
+              href={item.link} 
+              className="block px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200 text-gray-700 hover:text-blue-600"
+            >
+              {item.name}
+            </a>
+          ))}
+        </ul>
+
+        {/* Product Suites */}
+        <h3 className="font-bold text-blue-900 px-6 mb-2 mt-4">PRODUCT SUITES</h3>
+        <ul>
+          {[
+            { name: 'Clear Finance Cloud', link: '/clear-finance-cloud' },
+            { name: 'Clear Compliance Cloud', link: '/clear-compliance-cloud' },
+            { name: 'Clear Supply Chain Cloud', link: '/clear-supply-chain-cloud' },
+          ].map((item) => (
+            <a 
+              key={item.name} 
+              href={item.link} 
+              className="block px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200 text-gray-700 hover:text-blue-600"
+            >
+              {item.name}
+            </a>
+          ))}
+        </ul>
       </div>
+    </div>
+  )}
+</div>
 
       <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Resources</a>
       <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Company</a>
