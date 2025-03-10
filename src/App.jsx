@@ -1,8 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { ChevronDown } from "lucide-react";
-
-import { testimonialsData } from "./data/testimonials";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import TaxCalculatorPage from "./TaxCalculator"; // Import the new TaxCalculatorPage component
+import { testimonialsData } from "./data/testimonials"; // Import the testimonials data
+import InterestCalculator from "./calculators/InterestCalculator"; // Correct import path
+import IncomeTaxCalculator from "./calculators/IncomeTaxCalculator"; // Correct import path
+import GratuityCalculator from "./calculators/GratuityCalculator"; // Correct import path
+import SIPCalculator from "./calculators/SipCalculator"; // Correct import path
+import HRACalculator from "./calculators/HRACalculator"; // Correct import path
+import FDCalculator from "./calculators/FDCalculator"; // Correct import path
+import HomeLoanEMICalculator from "./calculators/HomeLoanCalculator"; // Correct import path
+import CryptoTaxCalculator from "./calculators/CryptoCalculator"; // Correct import path
 import {
+  Home,
+  Settings,
+  BookOpen,
+  Phone,
+  ChevronDown,
   FileText,
   Upload,
   PhoneCall,
@@ -16,12 +29,11 @@ import {
   Award,
   TrendingUp,
   Users,
-
 } from "lucide-react";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -30,7 +42,7 @@ function App() {
 
     return () => clearTimeout(timer);
   }, []);
-  
+
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
   };
@@ -62,199 +74,172 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      
-      {/* Header */}
-<header className="bg-white shadow-sm sticky top-0 z-50">
-  <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-    <div className="flex items-center">
-      <span className="text-2xl font-bold text-blue-900">
-        Tax<span className="text-blue-500">Truth</span>
-      </span>
-    </div>
-    <nav className="hidden md:flex space-x-8">
-      <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-      
-      {/* Products Dropdown */}
-      <div 
-        className="relative"
-        onMouseLeave={() => setDropdownOpen(false)}
-      >
-        <button 
-          onMouseEnter={() => setDropdownOpen(true)}
-          className="text-gray-700 hover:text-blue-600 font-medium flex items-center"
-        >
-          Products <ChevronDown className="ml-1" />
-        </button>
-        
-     
-        {dropdownOpen && (
-         {/* Products Dropdown */}
-<div 
-  className="relative"
-  onMouseLeave={() => setDropdownOpen(false)}
->
-  <button 
-    onMouseEnter={() => setDropdownOpen(true)}
-    className="text-gray-700 hover:text-blue-600 font-medium flex items-center"
-  >
-    Products <ChevronDown className="ml-1" />
-  </button>
+    <Router>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="min-h-screen bg-gray-50">
+              {/* Header */}
+              <header className="bg-white shadow-sm sticky top-0 z-50">
+                <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+                  <div className="flex items-center">
+                    <span className="text-2xl font-bold text-blue-900">
+                      Tax<span className="text-blue-500">Truth</span>
+                    </span>
+                  </div>
+                  <nav className="hidden md:flex space-x-8">
+                    <Link to="/" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                      <Home className="w-5 h-5 mr-2" />
+                      Home
+                    </Link>
 
-  {dropdownOpen && (
-    <div 
-      className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md z-10"
-      onMouseEnter={() => setDropdownOpen(true)}
-    >
-      <div className="py-4">
-        {/* Individual Products */}
-        <h3 className="font-bold text-blue-900 px-6 mb-2">INDIVIDUAL PRODUCTS</h3>
-        <ul className="mb-4">
-          {[
-            { name: 'GST', link: '/gst' },
-            { name: 'Accounts Payable', link: '/accounts-payable' },
-            { name: 'Vendor Management', link: '/vendor-management' },
-            { name: 'MaxITC', link: '/maxitc' },
-            { name: 'E-Invoicing & E-Way Bill', link: '/e-invoicing-eway-bill' },
-            { name: 'TDS', link: '/tds' },
-          ].map((item) => (
-            <a 
-              key={item.name} 
-              href={item.link} 
-              className="block px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200 text-gray-700 hover:text-blue-600"
-            >
-              {item.name}
-            </a>
-          ))}
-        </ul>
+                    {/* Services Dropdown */}
+                    <div
+                      className="relative"
+                      onMouseLeave={() => setDropdownOpen(false)}
+                    >
+                      <button
+                        onMouseEnter={() => setDropdownOpen(true)}
+                        className="text-gray-700 hover:text-blue-600 font-medium flex items-center"
+                      >
+                        <Settings className="w-5 h-5 mr-2" />
+                        Services <ChevronDown className="ml-1" />
+                      </button>
 
-        {/* Product Suites */}
-        <h3 className="font-bold text-blue-900 px-6 mb-2 mt-4">PRODUCT SUITES</h3>
-        <ul>
-          {[
-            { name: 'Clear Finance Cloud', link: '/clear-finance-cloud' },
-            { name: 'Clear Compliance Cloud', link: '/clear-compliance-cloud' },
-            { name: 'Clear Supply Chain Cloud', link: '/clear-supply-chain-cloud' },
-          ].map((item) => (
-            <a 
-              key={item.name} 
-              href={item.link} 
-              className="block px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200 text-gray-700 hover:text-blue-600"
-            >
-              {item.name}
-            </a>
-          ))}
-        </ul>
-      </div>
-    </div>
-  )}
-</div>
+                      {dropdownOpen && (
+                        <div
+                          className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md z-10"
+                          onMouseEnter={() => setDropdownOpen(true)}
+                        >
+                          <div className="py-4">
+                            {/* Individual Services */}
+                            <h3 className="font-bold text-blue-900 px-6 mb-2">INDIVIDUAL Services</h3>
+                            <ul className="mb-4">
+                              {[
+                                { name: 'GST', link: '/gst' },
+                                { name: 'Accounts Payable', link: '/accounts-payable' },
+                                { name: 'Vendor Management', link: '/vendor-management' },
+                                { name: 'MaxITC', link: '/maxitc' },
+                                { name: 'E-Invoicing & E-Way Bill', link: '/e-invoicing-eway-bill' },
+                                { name: 'TDS', link: '/tds' },
+                              ].map((item) => (
+                                <Link
+                                  key={item.name}
+                                  to={item.link}
+                                  className="block px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200 text-gray-700 hover:text-blue-600"
+                                >
+                                  {item.name}
+                                </Link>
+                              ))}
+                            </ul>
 
-      <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Resources</a>
-      <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Company</a>
-    </nav>
-    
-    <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md font-medium transition-colors duration-300">
-      Get started
-    </button>
-  </div>
-</header>
+                            {/* Business Services */}
+                            <h3 className="font-bold text-blue-900 px-6 mb-2 mt-4">Business Services</h3>
+                            <ul>
+                              {[
+                                { name: 'Clear Finance Cloud', link: '/clear-finance-cloud' },
+                                { name: 'Clear Compliance Cloud', link: '/clear-compliance-cloud' },
+                                { name: 'Clear Supply Chain Cloud', link: '/clear-supply-chain-cloud' },
+                              ].map((item) => (
+                                <Link
+                                  key={item.name}
+                                  to={item.link}
+                                  className="block px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200 text-gray-700 hover:text-blue-600"
+                                >
+                                  {item.name}
+                                </Link>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      )}
+                    </div>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <div className="animate-fade-in">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-blue-900 mb-6">
-            Nothing is certain except death and taxes.
-            </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-              India's largest tax and financial services software platform
-            </p>
-          </div>
+                    <Link to="/blogs" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                      <BookOpen className="w-5 h-5 mr-2" />
+                      Blogs
+                    </Link>
 
-          {/* Service Cards */}
-          <div className="grid md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
-            {/* Card 1 */}
-            <div className="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-              <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <BarChart3 className="text-blue-600 w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-bold text-blue-900 mb-2">MaxiTC</h3>
-              <p className="text-gray-600 mb-4">
-                Increase Accuracy, Efficiency & Productivity
-              </p>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full font-medium transition-colors duration-300">
-                Buy product
-              </button>
-            </div>
+                    <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                      <Phone className="w-5 h-5 mr-2" />
+                      Contact
+                    </Link>
+                  </nav>
 
-            {/* Card 2 */}
-            <div className="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-              <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Building2 className="text-blue-600 w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-bold text-blue-900 mb-2">
-                Enterprise
-              </h3>
-              <p className="text-gray-600 mb-4">
-                GST & Invoicing, Streamlined compliance & more
-              </p>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full font-medium transition-colors duration-300">
-                Explore more
-              </button>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-              <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Calculator className="text-blue-600 w-8 h-8" />
-              </div>
-              <h3 className="text-xl font-bold text-blue-900 mb-2">
-                Calculate Tax Liability
-              </h3>
-              <p className="text-gray-600 mb-4">
-                Know your tax liability as per the latest budget 2023 updates
-              </p>
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full font-medium transition-colors duration-300">
-                Calculate Now
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* GL Stream Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 text-center">
-          <div className="mb-4 text-blue-600 font-medium">Finance Teams</div>
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-900 mb-4 max-w-3xl mx-auto">
-            ONE compliance platform powered by new technology, GL Stream
-          </h2>
-          <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-            Stream your general ledger directly for tax compliance.
-          </p>
-
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-8 md:p-12 max-w-4xl mx-auto shadow-lg relative overflow-hidden">
-            <div className="absolute inset-0 opacity-20 bg-blue-600 animate-pulse"></div>
-            <div className="relative z-10">
-              <div className="bg-white w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
-                <div className="bg-gradient-to-r from-blue-500 to-indigo-600 w-16 h-16 rounded-full flex items-center justify-center text-white font-bold">
-                  GL
+                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md font-medium transition-colors duration-300">
+                    Get started
+                  </button>
                 </div>
-              </div>
-              <h3 className="text-2xl font-bold text-blue-900 mb-2">
-                First time in India, introducing GL Stream
-              </h3>
-              <div className="mt-8 inline-flex items-center bg-white rounded-full px-4 py-2 shadow-md">
-                <span className="mr-2">Learn More</span>
-                <div className="bg-blue-600 rounded-full p-1">
-                  <ChevronRight className="w-4 h-4 text-white" />
+              </header>
+
+              {/* Hero Section */}
+              <section className="bg-gradient-to-r from-blue-50 to-indigo-50 py-20">
+                <div className="container mx-auto px-4 text-center">
+                  <div className="animate-fade-in">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-blue-900 mb-6">
+                      Nothing is certain except death and taxes.
+                    </h1>
+                    <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+                      India's largest tax and financial services software platform
+                    </p>
+                  </div>
+
+                  {/* Service Cards */}
+                  <div className="grid md:grid-cols-3 gap-8 mt-16 max-w-5xl mx-auto">
+                    {/* Card 1 */}
+                    <div className="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                      <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <BarChart3 className="text-blue-600 w-8 h-8" />
+                      </div>
+                      <h3 className="text-xl font-bold text-blue-900 mb-2">MaxiTC</h3>
+                      <p className="text-gray-600 mb-4">
+                        Increase Accuracy, Efficiency & Productivity
+                      </p>
+                      <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full font-medium transition-colors duration-300">
+                        Buy product
+                      </button>
+                    </div>
+
+                    {/* Card 2 */}
+                    <div className="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                      <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Building2 className="text-blue-600 w-8 h-8" />
+                      </div>
+                      <h3 className="text-xl font-bold text-blue-900 mb-2">
+                        Enterprise
+                      </h3>
+                      <p className="text-gray-600 mb-4">
+                        GST & Invoicing, Streamlined compliance & more
+                      </p>
+                      <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full font-medium transition-colors duration-300">
+                        Explore more
+                      </button>
+                    </div>
+
+                    {/* Card 3 */}
+                    <div className="bg-white rounded-xl shadow-lg p-8 transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+                      <div className="bg-blue-50 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Calculator className="text-blue-600 w-8 h-8" />
+                      </div>
+                      <h3 className="text-xl font-bold text-blue-900 mb-2">
+                        Calculate Tax Liability
+                      </h3>
+                      <p className="text-gray-600 mb-4">
+                        Know your tax liability as per the latest budget 2023 updates
+                      </p>
+                      <Link
+                        to="/tax-calculators"
+                        className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full font-medium transition-colors duration-300 block text-center"
+                      >
+                        Calculate Now
+                      </Link>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+              </section>
+
+
 
       {/* Platform Section */}
       <section className="py-20 bg-gray-50">
@@ -777,6 +762,38 @@ function App() {
         </div>
       </footer>
     </div>
+          }
+        
+/>
+        <Route path="/" element={<App />} />
+        <Route path="/tax-calculators" element={<TaxCalculatorPage />} />
+
+{/* Interest Calculator Route */}
+<Route
+  path="/tax-calculators/interest-calculator"
+  element={<InterestCalculator />}
+/>
+<Route
+  path="/tax-calculators/income-tax-calculator"
+  element={<IncomeTaxCalculator />}
+/>
+<Route
+  path="/tax-calculators/GratuityCalculator"
+  element={<GratuityCalculator />}
+/>
+<Route path="/tax-calculators/sip-calculator" 
+element={<SIPCalculator />} />
+<Route path="/tax-calculators/hra-Calculator"
+element={<HRACalculator />} />
+<Route path="/tax-calculators/fd-calculator" 
+element={<FDCalculator />} />
+<Route path="/tax-calculators/home-loan-emi-calculator"
+element={<HomeLoanEMICalculator />} />
+<Route path="/tax-calculators/crypto-tax-calculator"
+element={<CryptoTaxCalculator />} />
+
+      </Routes>
+</Router>
   );
 }
 
