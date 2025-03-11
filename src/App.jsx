@@ -74,7 +74,6 @@ function App() {
   }
 
   return (
-<<<<<<< calculators
     <Router>
       <Routes>
         <Route
@@ -161,81 +160,6 @@ function App() {
                       <BookOpen className="w-5 h-5 mr-2" />
                       Blogs
                     </Link>
-    <div className="min-h-screen bg-gray-50">
-      
-      {/* Header */}
-<header className="bg-white shadow-sm sticky top-0 z-50">
-  <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-    <div className="flex items-center">
-      <span className="text-2xl font-bold text-blue-900">
-        Tax<span className="text-blue-500">Truth</span>
-      </span>
-    </div>
-    <nav className="hidden md:flex space-x-8">
-      <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-      
-      {/* Products Dropdown */}
-      {/* Products Dropdown */}
-<div 
-  className="relative"
-  onMouseLeave={() => setDropdownOpen(false)}
->
-  <button 
-    onMouseEnter={() => setDropdownOpen(true)}
-    className="text-gray-700 hover:text-blue-600 font-medium flex items-center"
-  >
-    Products <ChevronDown className="ml-1" />
-  </button>
-
-  {dropdownOpen && (
-    <div 
-      className="absolute left-0 mt-2 w-64 bg-white shadow-lg rounded-md z-10"
-      onMouseEnter={() => setDropdownOpen(true)}
-    >
-      <div className="py-4">
-        {/* Individual Products */}
-        <h3 className="font-bold text-blue-900 px-6 mb-2">INDIVIDUAL PRODUCTS</h3>
-        <ul className="mb-4">
-          {[
-            { name: 'GST', link: '/gst' },
-            { name: 'Accounts Payable', link: '/accounts-payable' },
-            { name: 'Vendor Management', link: '/vendor-management' },
-            { name: 'MaxITC', link: '/maxitc' },
-            { name: 'E-Invoicing & E-Way Bill', link: '/e-invoicing-eway-bill' },
-            { name: 'TDS', link: '/tds' },
-          ].map((item) => (
-            <a 
-              key={item.name} 
-              href={item.link} 
-              className="block px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200 text-gray-700 hover:text-blue-600"
-            >
-              {item.name}
-            </a>
-          ))}
-        </ul>
-
-        {/* Product Suites */}
-        <h3 className="font-bold text-blue-900 px-6 mb-2 mt-4">PRODUCT SUITES</h3>
-        <ul>
-          {[
-            { name: 'Clear Finance Cloud', link: '/clear-finance-cloud' },
-            { name: 'Clear Compliance Cloud', link: '/clear-compliance-cloud' },
-            { name: 'Clear Supply Chain Cloud', link: '/clear-supply-chain-cloud' },
-          ].map((item) => (
-            <a 
-              key={item.name} 
-              href={item.link} 
-              className="block px-6 py-2 hover:bg-blue-100 cursor-pointer transition-colors duration-200 text-gray-700 hover:text-blue-600"
-            >
-              {item.name}
-            </a>
-          ))}
-        </ul>
-      </div>
-    </div>
-  )}
-</div>
->>>>>>> main
 
                     <Link to="/contact" className="text-gray-700 hover:text-blue-600 font-medium flex items-center">
                       <Phone className="w-5 h-5 mr-2" />
